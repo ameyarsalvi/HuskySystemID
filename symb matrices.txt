@@ -1,0 +1,44 @@
+M = [m 0 0 0 0 0 0;
+    0 m 0 0 0 0 0;
+    0 0 I 0 0 0 0;
+    0 0 0 i_w 0 0 0;
+    0 0 0 0 i_w 0 0;
+    0 0 0 0 0 i_w 0;
+    0 0 0 0 0 0 i_w];
+
+A = [cos(theta) sin(theta) -b r 0 0 0;
+    -sin(theta) cos(theta) d 0 0 0 0;
+    cos(theta) sin(theta) b 0 r 0 0;
+    cos(theta) sin(theta) b 0 0 r 0;
+    -sin(theta) cos(theta) -d 0 0 0 0;
+    cos(theta) sin(theta) -b 0 0 0 r];
+
+A_t = [cos(theta) -sin(theta) cos(theta) cos(theta) -sin(theta) cos(theta);
+    sin(theta) cos(theta) sin(theta) sin(theta) cos(theta) sin(theta);
+    -b d b b -d -b;
+    r 0 0 0 0 0;
+    0 0 r 0 0 0;
+    0 0 0 r 0 0;
+    0 0 0 0 0 r];
+
+A*inv(M) = 
+[ cos(theta)/m, sin(theta)/m, -b/I, r/i_w,     0,     0,     0]
+[-sin(theta)/m, cos(theta)/m,  d/I,     0,     0,     0,     0]
+[ cos(theta)/m, sin(theta)/m,  b/I,     0, r/i_w,     0,     0]
+[ cos(theta)/m, sin(theta)/m,  b/I,     0,     0, r/i_w,     0]
+[-sin(theta)/m, cos(theta)/m, -d/I,     0,     0,     0,     0]
+[ cos(theta)/m, sin(theta)/m, -b/I,     0,     0,     0, r/i_w]
+
+
+
+A*inv(M)*A_T
+[cos(theta)^2/m + sin(theta)^2/m + b^2/I + r^2/i_w,                                -(b*d)/I,           cos(theta)^2/m + sin(theta)^2/m - b^2/I,           cos(theta)^2/m + sin(theta)^2/m - b^2/I,                                 (b*d)/I,           cos(theta)^2/m + sin(theta)^2/m + b^2/I]
+[                                         -(b*d)/I, cos(theta)^2/m + sin(theta)^2/m + d^2/I,                                           (b*d)/I,                                           (b*d)/I, cos(theta)^2/m + sin(theta)^2/m - d^2/I,                                          -(b*d)/I]
+[          cos(theta)^2/m + sin(theta)^2/m - b^2/I,                                 (b*d)/I, cos(theta)^2/m + sin(theta)^2/m + b^2/I + r^2/i_w,           cos(theta)^2/m + sin(theta)^2/m + b^2/I,                                -(b*d)/I,           cos(theta)^2/m + sin(theta)^2/m - b^2/I]
+[          cos(theta)^2/m + sin(theta)^2/m - b^2/I,                                 (b*d)/I,           cos(theta)^2/m + sin(theta)^2/m + b^2/I, cos(theta)^2/m + sin(theta)^2/m + b^2/I + r^2/i_w,                                -(b*d)/I,           cos(theta)^2/m + sin(theta)^2/m - b^2/I]
+[                                          (b*d)/I, cos(theta)^2/m + sin(theta)^2/m - d^2/I,                                          -(b*d)/I,                                          -(b*d)/I, cos(theta)^2/m + sin(theta)^2/m + d^2/I,                                           (b*d)/I]
+[          cos(theta)^2/m + sin(theta)^2/m + b^2/I,                                -(b*d)/I,           cos(theta)^2/m + sin(theta)^2/m - b^2/I,           cos(theta)^2/m + sin(theta)^2/m - b^2/I,                                 (b*d)/I, cos(theta)^2/m + sin(theta)^2/m + b^2/I + r^2/i_w]
+ 
+
+inv(A*inv(M)*A_T) = 
+
