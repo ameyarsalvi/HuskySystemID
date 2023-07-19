@@ -62,10 +62,10 @@ M_inv = [1/h.m,   0,   0,     0,     0,     0,     0;
 %              cos(theta) sin(theta) -h.b 0 0 0 h.r];
 
 dt =0.01;
-t_end = 100;
+t_end = 10;
 i=1;
 
-for t = 1:100
+for t = 1:10
 
     [lambda, cr_mat, tau, R, M] = getMatrix(q_prv,qdot_prv,qddot_prv,h,torque,dt);
 

@@ -27,6 +27,10 @@ function lamda = calcLambda(q,qdot,qddot_prv,h,torque)
 
     K = d_dot
 
+    if isnan(K)
+        K = 0;
+    end
+
     %%% Left side matrix
     %First row
     inv_T1(1,1) = (i_w*(3*i_w + m*r^2))/(m*r^4 + 4*i_w*r^2);
